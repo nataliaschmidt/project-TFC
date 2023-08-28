@@ -24,7 +24,8 @@ class Validations {
       return res.status(401).json({ message: 'Token not found' });
     }
     const token = bearerToken.split(' ')[1];
-    const validToken = await JWT.verify(token);
+    const validToken = JWT.verify(token);
+    req.body.user = validToken;
     if (validToken === 'Token must be a valid token') {
       return res.status(401).json({ message: validToken });
     }
