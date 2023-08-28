@@ -7,7 +7,6 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import SequelizeUser from '../database/models/SequellizeUser';
 import { noEmailBody, noPasswordBody, noValidEmailBody, noValidPasswordBody, notFoundUser, token, unregisteredPassword, user, validLoginBody } from './mocks/login.mock';
-import JWT from '../utils/JWT';
 
 
 chai.use(chaiHttp);

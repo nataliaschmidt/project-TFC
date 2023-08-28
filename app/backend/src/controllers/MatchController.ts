@@ -19,4 +19,24 @@ export default class MatchController {
       return res.status(500).json({ message: (error as Error).message });
     }
   }
+
+  public async updateMatch(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const { status, data } = await this._matchService.updateMatch(Number(id));
+      return res.status(mapStatusHTTP(status)).json(data);
+    } catch (error) {
+      console.log('ERRO', error);
+      return res.status(500).json({ message: (error as Error).message });
+    }
+  }
+
+  public async createMatch(req: Request, res: Response) {
+    try {
+      const { status, data } = await this._matchService.createMatch(req.body);
+      return res.status(mapStatusHTTP(status)).json(data);
+    } catch (error) {
+      return res.status(500).json({ message: (error as Error).message });
+    }
+  }
 }
