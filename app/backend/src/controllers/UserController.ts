@@ -17,4 +17,13 @@ export default class UserController {
       return res.status(500).json({ message: (error as Error).message });
     }
   }
+
+  public async loginRole(req: Request, res: Response):Promise<Response> {
+    try {
+      const { status, data } = await this._userService.loginRole(req.body);
+      return res.status(mapStatusHTTP(status)).json(data);
+    } catch (error) {
+      return res.status(500).json({ message: (error as Error).message });
+    }
+  }
 }

@@ -24,4 +24,9 @@ export default class UserService {
     }
     return { status: 'UNAUTHORIZED', data: { message: 'Invalid email or password' } };
   }
+
+  public async loginRole(data: IUser): Promise<ServiceResponse<{ role: string | undefined }>> {
+    const user = await this.userModel.findByEmail(data.email);
+    return { status: 'SUCCESSFUL', data: { role: user?.role } };
+  }
 }
