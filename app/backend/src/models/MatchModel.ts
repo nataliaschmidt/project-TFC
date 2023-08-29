@@ -1,6 +1,7 @@
+import { NewEntity } from '../Interfaces';
 import SequelizeTeams from '../database/models/SequelizeTeams';
 import SequelizeMatches from '../database/models/SequelizeMatches';
-import { IMatch } from '../Interfaces/matches/IMatch';
+import { IGoalsMatch, IMatch } from '../Interfaces/matches/IMatch';
 import { IMatchModel } from '../Interfaces/matches/IMatchModel';
 
 type Filter = {
@@ -40,17 +41,23 @@ export default class MatchModel implements IMatchModel {
     return { id, homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals, inProgress };
   }
 
-  public async updtateProgressMatch(id: number): Promise<void> {
-    // const match = await this.findById(id);
-    // if (!match) return null;
-    // const matchFinished = { ...match, inProgress: false };
-
-    await this.model.update({ inProgress: false }, { where: { id } });
-
-    // return matchFinished;
+  public async updtateMatch(id: number, data?: IGoalsMatch): Promise<void | number> {
+    console.log(data?.homeTeamGoals === undefined);
+    const match = await this.findById(id);
+    if (!match) return 0;
+    if (data?.homeTeamGoals === undefined) {
+      await this.model.update({ inProgress: false }, { where: { id } });
+    }
+    if (data?.homeTeamGoals !== undefined) {
+      await this.model.update(
+        { homeTeamGoals: data.homeTeamGoals, awayTeamGoals: data.awayTeamGoals },
+        { where: { id } },
+      );
+    }
+    return 1;
   }
 
-  public async createMatch(data: any): Promise<any> {
+  public async createMatch(data: NewEntity<IMatch>): Promise<IMatch> {
     const newMatch = { ...data, inProgress: true };
     const dbData = await this.model.create(newMatch);
 

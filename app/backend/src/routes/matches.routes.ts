@@ -19,4 +19,10 @@ matchesRouter.patch(
   (req: Request, res: Response) => matchController.updateMatch(req, res),
 );
 
+matchesRouter.patch(
+  '/:id',
+  Validations.validateToken,
+  (req: Request, res: Response) => matchController.updateMatch(req, res),
+);
+
 export default matchesRouter;

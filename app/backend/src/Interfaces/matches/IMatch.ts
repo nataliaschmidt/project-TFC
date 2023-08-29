@@ -1,9 +1,12 @@
 import { Identification } from '..';
 
-export interface IMatch extends Identification {
-  homeTeamId: number;
-  awayTeamId: number;
+export interface IGoalsMatch {
   homeTeamGoals: number;
   awayTeamGoals: number;
+}
+
+export interface IMatch extends Identification, IGoalsMatch {
+  homeTeamId: number;
+  awayTeamId: number;
   inProgress: boolean;
 }
