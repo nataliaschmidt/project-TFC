@@ -57,7 +57,11 @@ export default class MatchModel implements IMatchModel {
     return 1;
   }
 
-  public async createMatch(data: NewEntity<IMatch>): Promise<IMatch> {
+  public async createMatch(data: NewEntity<IMatch>): Promise<IMatch | null> {
+    const homeTeam = await SequelizeTeams.findByPk(data.homeTeamId);
+    const awayTeam = await SequelizeTeams.findByPk(data.awayTeamId);
+    if (!homeTeam || !awayTeam) return null;
+
     const newMatch = { ...data, inProgress: true };
     const dbData = await this.model.create(newMatch);
 
