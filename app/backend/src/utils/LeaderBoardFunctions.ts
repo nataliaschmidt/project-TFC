@@ -55,15 +55,6 @@ export default class LeaderBoardUtils {
     return newTeam;
   }
 
-  // static updateTeamStatistics(team: ILeaderBoard, match:Match) {
-  //   team.totalGames += 1;
-  //   team.totalVictories += match.homeTeamGoals > match.awayTeamGoals ? +1 : 0;
-  //   team.totalDraws += match.homeTeamGoals === match.awayTeamGoals ? 1 : 0;
-  //   team.totalLosses += match.homeTeamGoals < match.awayTeamGoals ? 1 : 0;
-  //   team.goalsFavor += Number(match.homeTeamGoals);
-  //   team.goalsOwn += Number(match.awayTeamGoals);
-  // }
-
   static formatTeam(matches: Match[][]) {
     const teams: ILeaderBoard[] = [];
 
@@ -84,39 +75,6 @@ export default class LeaderBoardUtils {
       });
     });
     return teams;
-
-    // const teams: ILeaderBoard[] = [];
-
-    // matches.forEach((match) => {
-    //   match.forEach((m) => {
-    //     const hasTeam = teams.find((t) => t.name === m.homeTeam);
-
-    //     if (hasTeam) {
-    //       hasTeam.totalGames += 1;
-    //       hasTeam.totalVictories += m.homeTeamGoals > m.awayTeamGoals ? +1 : 0;
-    //       hasTeam.totalDraws += m.homeTeamGoals === m.awayTeamGoals ? 1 : 0;
-    //       hasTeam.totalLosses += m.homeTeamGoals < m.awayTeamGoals ? 1 : 0;
-    //       hasTeam.goalsFavor += Number(m.homeTeamGoals);
-    //       hasTeam.goalsOwn += Number(m.awayTeamGoals);
-    //     } else {
-    //       const team: ILeaderBoard = {
-    //         name: m.homeTeam,
-    //         totalPoints: 0,
-    //         totalGames: 1,
-    //         totalVictories: m.homeTeamGoals > m.awayTeamGoals ? 1 : 0,
-    //         totalDraws: m.homeTeamGoals === m.awayTeamGoals ? 1 : 0,
-    //         totalLosses: m.homeTeamGoals < m.awayTeamGoals ? 1 : 0,
-    //         goalsFavor: Number(m.homeTeamGoals),
-    //         goalsOwn: Number(m.awayTeamGoals),
-    //         goalsBalance: 0,
-    //         efficiency: '',
-    //       };
-    //       teams.push(team);
-    //     }
-    //   });
-    // });
-
-    // return teams;
   }
 
   static calcStatistics(matches: Match[][]) {
@@ -135,36 +93,3 @@ export default class LeaderBoardUtils {
     return sortTeams;
   }
 }
-
-// const teams: ILeaderBoard[] = [];
-
-// matches.forEach((match) => {
-//   match.forEach((m) => {
-//     const hasTeam = teams.find((t) => t.name === m.homeTeam);
-
-//     if (hasTeam) {
-//       hasTeam.totalGames += 1;
-//       hasTeam.totalVictories += m.homeTeamGoals > m.awayTeamGoals ? +1 : 0;
-//       hasTeam.totalDraws += m.homeTeamGoals === m.awayTeamGoals ? 1 : 0;
-//       hasTeam.totalLosses += m.homeTeamGoals < m.awayTeamGoals ? 1 : 0;
-//       hasTeam.goalsFavor += Number(m.homeTeamGoals);
-//       hasTeam.goalsOwn += Number(m.awayTeamGoals);
-//     } else {
-//       const team: ILeaderBoard = {
-//         name: m.homeTeam,
-//         totalPoints: 0,
-//         totalGames: 1,
-//         totalVictories: m.homeTeamGoals > m.awayTeamGoals ? 1 : 0,
-//         totalDraws: m.homeTeamGoals === m.awayTeamGoals ? 1 : 0,
-//         totalLosses: m.homeTeamGoals < m.awayTeamGoals ? 1 : 0,
-//         goalsFavor: Number(m.homeTeamGoals),
-//         goalsOwn: Number(m.awayTeamGoals),
-//         goalsBalance: 0,
-//         efficiency: '',
-//       };
-//       teams.push(team);
-//     }
-//   });
-// });
-
-// return teams;
