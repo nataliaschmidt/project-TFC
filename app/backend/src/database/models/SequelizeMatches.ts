@@ -16,6 +16,7 @@ class SequelizeMatches extends
   declare awayTeamId: number;
   declare awayTeamGoals: number;
   declare inProgress: boolean;
+  declare homeTeam?: CreationOptional<{ teamName: string }>;
 }
 
 SequelizeMatches.init({

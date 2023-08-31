@@ -42,7 +42,6 @@ export default class MatchModel implements IMatchModel {
   }
 
   public async updtateMatch(id: number, data?: IGoalsMatch): Promise<void | number> {
-    console.log(data?.homeTeamGoals === undefined);
     const match = await this.findById(id);
     if (!match) return 0;
     if (data?.homeTeamGoals === undefined) {

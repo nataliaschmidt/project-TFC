@@ -5,6 +5,7 @@ import Validations from '../middlewares/Validation';
 const matchesRouter = Router();
 
 const matchController = new MatchController();
+
 matchesRouter.get('/', (req: Request, res: Response) => matchController.getAllTeams(req, res));
 
 matchesRouter.post(
